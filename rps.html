@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+    <script>
+
+        let playerScore = 0;
+        let computerScore = 0;       
+
+        function computerPlay(){
+            let randNumber = Math.floor(Math.random()*3+1);
+            if(randNumber == 1){
+                return "Rock";
+            }
+            else if (randNumber == 2){
+                return "Paper";    
+            }
+            else {
+                return "Scissors";
+            }
+        }
+        
+        function gameRound() {
+            while(computerScore < 5 && playerScore < 5){
+                // Player selection    
+                let playerInput = prompt('Type Rock, Paper, or Scissors').toLowerCase();
+                let playerSelection = playerInput.charAt(0).toUpperCase() + playerInput.slice(1);
+
+                // Computer selection
+                let computerSelection = computerPlay();
+
+                // This is what happens if computer wins    
+                if (computerSelection === 'Rock' && playerSelection ==='Scissors' || 
+                computerSelection === 'Scissors' && playerSelection ==='Paper' ||    
+                computerSelection === 'Paper' && playerSelection ==='Rock') {
+                    console.log('You lose. ' + playerSelection + ' loses to ' + computerSelection + '.');
+                    computerScore++;
+                }
+
+                // This is what happer if player wins
+                else if (computerSelection === 'Rock' && playerSelection ==='Paper' || 
+                computerSelection === 'Scissors' && playerSelection ==='Rock' ||    
+                computerSelection === 'Paper' && playerSelection ==='Scissors') {
+                    console.log('You win. ' + playerSelection + ' beats ' + computerSelection + '.');
+                    playerScore++;
+                }
+
+                else if(computerSelection === 'Rock' && playerSelection ==='Rock' || 
+                computerSelection === 'Scissors' && playerSelection ==='Scissors' ||    
+                computerSelection === 'Paper' && playerSelection ==='Paper') {
+                    console.log('Draw! You both chose ' + playerSelection + '.');
+                    playerScore++;
+                }
+
+                console.log('The score is ' + playerScore + ' to ' + computerScore + '.' );
+            }
+                // if computer gets 3 points first.
+                if(computerScore>playerScore){
+                    console.log('You lose. Try agai!')
+                }
+                else{
+                    console.log('You win! Congratulations!')
+                }
+
+        };
+            
+         
+
+        gameRound();
+    <script>
+</body>
+</html>
